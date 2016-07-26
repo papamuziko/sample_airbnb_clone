@@ -16,5 +16,5 @@ Don't forget to set correctly MySQL configuration (`api/config.py`)
 
 ```
 $ cd api
-api/ $ AIRBNB_ENV=test python -m unittest discover tests --pattern=*.py
+$ AIRBNB_ENV=test python -m unittest discover tests --pattern=*.py
 ```
