@@ -11,12 +11,12 @@ def states(state_id=None):
         if state_id != None:
             try:
                 state = State.get(State.id == int(state_id))
-                return state.to_hash()
+                return state.to_dict()
             except:
                 pass
             return { 'code': 404, 'msg': "not found" }, 404
 
-        return { 'data': [state.to_hash() for state in State.select()] }, 200
+        return { 'data': [state.to_dict() for state in State.select()] }, 200
     
     elif request.method == "POST":
         name = request.form.get('name')
@@ -28,7 +28,7 @@ def states(state_id=None):
         except Exception as e:
             raise e 
         
-        return new_state.to_hash(), 201
+        return new_state.to_dict(), 201
 
     elif request.method == "DELETE":
         if state_id != None:

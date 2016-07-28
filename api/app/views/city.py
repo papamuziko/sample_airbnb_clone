@@ -22,12 +22,12 @@ def cities(state_id=None, city_id=None):
         if city_id != None:
             try:
                 city = City.get(City.id == int(city_id), City.state == state)
-                return city.to_hash()
+                return city.to_dict()
             except:
                 pass
             return { 'code': 404, 'msg': "not found" }, 404
 
-        return { 'data': [city.to_hash() for city in City.select().where(City.state == state)] }, 200
+        return { 'data': [city.to_dict() for city in City.select().where(City.state == state)] }, 200
     
     elif request.method == "POST":
         name = request.form.get('name')
@@ -42,7 +42,7 @@ def cities(state_id=None, city_id=None):
         except Exception as e:
             raise e 
         
-        return new_city.to_hash(), 201
+        return new_city.to_dict(), 201
 
     elif request.method == "DELETE":
         if city_id != None:

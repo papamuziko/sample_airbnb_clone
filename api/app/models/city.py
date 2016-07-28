@@ -14,7 +14,7 @@ class City(BaseModel):
     name = peewee.CharField(128, null = False, index=True)
     state = peewee.ForeignKeyField(State, related_name="cities", on_delete="CASCADE")
 
-    def to_hash(self):
+    def to_dict(self):
         return { 
                 'id': self.id,
                 'created_at': self.created_at,

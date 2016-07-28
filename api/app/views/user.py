@@ -10,12 +10,12 @@ def users(user_id=None):
         if user_id != None:
             try:
                 user = User.get(User.id == int(user_id))
-                return user.to_hash(), 200
+                return user.to_dict(), 200
             except:
                 pass
             return { 'code': 404, 'msg': "not found" }, 404
 
-        return { 'data': [user.to_hash() for user in User.select()] }, 200
+        return { 'data': [user.to_dict() for user in User.select()] }, 200
     
     elif request.method == "POST":
         email = request.form.get('email')
@@ -30,7 +30,7 @@ def users(user_id=None):
         except Exception as e:
             raise e 
         new_user.set_password(password)
-        return new_user.to_hash(), 201
+        return new_user.to_dict(), 201
 
     elif request.method == "PUT":
         if user_id != None:
@@ -50,7 +50,7 @@ def users(user_id=None):
                 user.first_name = first_name
                 user.last_name = last_name
                 user.save()
-                return user.to_hash(), 200
+                return user.to_dict(), 200
 
         return { 'code': 404, 'msg': "not found" }, 404
 

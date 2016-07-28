@@ -11,7 +11,7 @@ class State(BaseModel):
     
     name = peewee.CharField(128, null = False, index = True, unique = True)
     
-    def to_hash(self):
+    def to_dict(self):
         return { 
                 'id': self.id,
                 'created_at': self.created_at,

@@ -22,7 +22,7 @@ class User(BaseModel):
     def set_password(self, clear_password):
         self.password = hashlib.md5(clear_password).hexdigest()
 
-    def to_hash(self):
+    def to_dict(self):
         return { 
                 'id': self.id,
                 'created_at': self.created_at,
